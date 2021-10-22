@@ -23,6 +23,7 @@ deploy {
     artifacts {
         frcJavaArtifact('frcJava') {
             targets << "roborio"
+            // yo roborio
             // Debug can be overridden by command line, for use with VSCode
             debug = frc.getDebugOrDefault(false)
         }
