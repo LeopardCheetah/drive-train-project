@@ -7,11 +7,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.commands.CoastMode;
+import frc.robot.commands.BreakMode;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,6 +25,8 @@ public class RobotContainer {
   public static final class Config {
     // not a filler var
     public static final int joystickPort = 1;
+    public static final int breakButton = 4;
+    public static final int coastButton = 2;
   }
 
   // cool command vars
@@ -30,8 +34,11 @@ public class RobotContainer {
   public final DriveTrain m_DriveTrain = new DriveTrain();
   public final Joystick m_Joystick = new Joystick(Config.joystickPort);
   public final ArcadeDrive m_ArcadeDrive = new ArcadeDrive(m_DriveTrain, m_Joystick);
+  public final CoastMode CoastMode = new CoastMode(m_DriveTrain);
+  public final BreakMode BreakMode = new BreakMode(m_DriveTrain);
   
-
+  private final JoystickButton m_breakButton = new JoystickButton(m_Joystick, Config.breakButton);
+  private final JoystickButton m_coastButton = new JoystickButton(m_Joystick, Config.coastButton);
   // The robot's subsystems and commands are defined here...
 
 
@@ -39,6 +46,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    
   }
 
   public Command teleop() {
@@ -51,7 +59,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+
+    m_breakButton.whenPressed(new BreakMode(m_DriveTrain));
+    m_coastButton.whenPressed(new CoastMode(m_DriveTrain));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
