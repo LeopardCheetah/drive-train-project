@@ -62,6 +62,10 @@ public class DriveTrain extends SubsystemBase {
         // LeftSlaveMotor.setIdleMode(IdleMode.kCoast);
     }
 
+    public void upMode() {
+
+    }
+
     public IdleMode motorType() {
         return LeftMasterMotor.getIdleMode();
     }    
