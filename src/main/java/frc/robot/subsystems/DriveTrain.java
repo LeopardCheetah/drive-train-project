@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -20,12 +21,24 @@ public class DriveTrain extends SubsystemBase {
         
         // public static final int leftMotorSlaveID = 0;
         // public static final int rightMotorSlaveID = 0;
+
+        //woah PID commands
+        public static final double kI = 0.0;
+        public static final double kD = 0.0;
+        public static final double kP = 0.0;
+
     }
+
+
 
     // cool motor assigning :)
 
     private CANSparkMax RightMasterMotor = new CANSparkMax(Config.rightMotorMasterID, MotorType.kBrushless);
     private CANSparkMax LeftMasterMotor = new CANSparkMax(Config.leftMotorMasterID, MotorType.kBrushless);
+
+    private CANEncoder m_encoderButRight = RightMasterMotor.getEncoder();
+    private CANEncoder m_encoderButLeft = LeftMasterMotor.getEncoder(); 
+
     /*
     private CANSparkMax RightSlaveMotor = new CANSparkMax(Config.rightMotorSlaveID, MotorType.kBrushless);
     private CANSparkMax LeftSlaveMotor = new CANSparkMax(Config.leftMotorSlaveID, MotorType.kBrushless);
@@ -45,6 +58,20 @@ public class DriveTrain extends SubsystemBase {
         //motors follow each other
 
     }
+
+
+    public void positionPlacement() {
+       // Gets the distance traveled
+       System.out.println("the right encoder position is at "+m_encoderButRight.getPosition());
+       System.out.println("the left encoder position is at "+m_encoderButLeft.getPosition());
+    }
+
+    public void EncoderResetting() {
+        m_encoderButRight.setPosition(0.0);
+        m_encoderButLeft.setPosition(0.0);
+    }
+
+    
 
     //breaking (break driving or smth) (break driving)
     public void breakMode() {

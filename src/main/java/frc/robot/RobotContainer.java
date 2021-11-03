@@ -17,7 +17,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.CoastMode;
 import frc.robot.commands.BreakMode;
 
-import frc.robot.subsystems.ArmButTheoretical;
+//import frc.robot.subsystems.ArmButTheoretical;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -76,7 +76,7 @@ public class RobotContainer {
 
     m_breakButton.whenPressed(new BreakMode(m_DriveTrain));
     m_coastButton.whenPressed(new CoastMode(m_DriveTrain));
-    m_upButton.whenPressed();
+    // m_upButton.whenPressed();
   }
 
   
@@ -84,9 +84,9 @@ public class RobotContainer {
 
   //speed definition
 
-  public void setLeftMotor(double speed) {
-    ArmButTheoretical.armMotor.set(speed);
-  }
+  //public void setLeftMotor(double speed) {
+  //  ArmButTheoretical.armMotor.set(speed);
+  //}
 
   
   /**
