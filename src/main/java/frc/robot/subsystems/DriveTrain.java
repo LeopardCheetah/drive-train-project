@@ -60,10 +60,14 @@ public class DriveTrain extends SubsystemBase {
     }
 
 
-    public void positionPlacement() {
+    public double positionPlacement() {
        // Gets the distance traveled
+       return m_encoderButRight.getPosition();
+       
+       /*
        System.out.println("the right encoder position is at "+m_encoderButRight.getPosition());
        System.out.println("the left encoder position is at "+m_encoderButLeft.getPosition());
+       */
     }
 
     public void EncoderResetting() {

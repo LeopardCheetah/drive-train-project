@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.CoastMode;
+import frc.robot.commands.MoveWithPID;
 import frc.robot.commands.BreakMode;
 
 //import frc.robot.subsystems.ArmButTheoretical;
@@ -32,6 +33,7 @@ public class RobotContainer {
     public static final int coastButton = 8;
     public static final int upButton = 7;
     public static final int downButton = 6;
+    public static final int PIDButton = 5;
   }
 
   // cool command vars
@@ -50,6 +52,7 @@ public class RobotContainer {
 
   private final JoystickButton m_breakButton = new JoystickButton(m_Joystick, Config.breakButton);
   private final JoystickButton m_coastButton = new JoystickButton(m_Joystick, Config.coastButton);
+  private final JoystickButton m_PIDButton = new JoystickButton(m_Joystick, Config.PIDButton);
   // The robot's subsystems and commands are defined here...
   
 
@@ -76,6 +79,7 @@ public class RobotContainer {
 
     m_breakButton.whenPressed(new BreakMode(m_DriveTrain));
     m_coastButton.whenPressed(new CoastMode(m_DriveTrain));
+    m_PIDButton.whenPressed(new MoveWithPID(m_DriveTrain, 5.0));
     // m_upButton.whenPressed();
   }
 
