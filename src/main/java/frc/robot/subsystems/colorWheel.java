@@ -34,6 +34,7 @@ public class colorWheel extends SubsystemBase {
   public colorWheel() {
     int ourSpace = Random.nextInt(7)+1;
     int destination = Random.nextInt(7)+1;
+    // there are errors up here ^
 
     if (ourSpace == destination || ourSpace == destination + 4)  {
       System.out.println("No movement needed, already on color");
