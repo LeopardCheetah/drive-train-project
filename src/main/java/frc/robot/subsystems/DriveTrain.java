@@ -36,8 +36,8 @@ public class DriveTrain extends SubsystemBase {
     private CANSparkMax RightMasterMotor = new CANSparkMax(Config.rightMotorMasterID, MotorType.kBrushless);
     private CANSparkMax LeftMasterMotor = new CANSparkMax(Config.leftMotorMasterID, MotorType.kBrushless);
 
-    private CANEncoder m_encoderButRight = RightMasterMotor.getEncoder();
-    private CANEncoder m_encoderButLeft = LeftMasterMotor.getEncoder(); 
+    private CANEncoder m_RightEncoder = RightMasterMotor.getEncoder();
+    private CANEncoder m_LeftEncoder = LeftMasterMotor.getEncoder(); 
 
     /*
     private CANSparkMax RightSlaveMotor = new CANSparkMax(Config.rightMotorSlaveID, MotorType.kBrushless);
@@ -62,17 +62,17 @@ public class DriveTrain extends SubsystemBase {
 
     public double positionPlacement() {
        // Gets the distance traveled
-       return m_encoderButRight.getPosition();
+       return m_RightEncoder.getPosition();
        
        /*
-       System.out.println("the right encoder position is at "+m_encoderButRight.getPosition());
-       System.out.println("the left encoder position is at "+m_encoderButLeft.getPosition());
+       System.out.println("the right encoder position is at "+m_RightEncoder.getPosition());
+       System.out.println("the left encoder position is at "+m_LeftEncoder.getPosition());
        */
     }
 
     public void EncoderResetting() {
-        m_encoderButRight.setPosition(0.0);
-        m_encoderButLeft.setPosition(0.0);
+        m_RightEncoder.setPosition(0.0);
+        m_LeftEncoder.setPosition(0.0);
     }
 
     

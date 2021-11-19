@@ -1,15 +1,14 @@
-
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.subsystems;
-import java.util.Random;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class colorWheel extends SubsystemBase {
-  public static final class Config {
+// nextInt is normally exclusive of the top value,
+// so add 1 to make it inclusive
+
+
+public class ColorWheel extends SubsystemBase {
+  public class Config {
     // ok so 
     /*
     order of things,(blue, red, green, yellow, blue, red, green, yellow)
@@ -17,6 +16,9 @@ public class colorWheel extends SubsystemBase {
 
     */
 
+    // so it turns out that this part isnt needed smh me
+
+    /*
     int spaceOne = 1;
     int spaceTwo = 2;
     int spaceThree = 3;
@@ -26,33 +28,43 @@ public class colorWheel extends SubsystemBase {
     int spaceSeven = 7;
     int spaceEight = 8;
     int spaceNumbers = 8;
+    */
+
+    
     // modulus addition
     //4 + space needed = x mod (8)
-
+    
   }
   /** Creates a new colorWheel. */
-  public colorWheel() {
-    int ourSpace = Random.nextInt(7)+1;
-    int destination = Random.nextInt(7)+1;
-    // there are errors up here ^
+  public ColorWheel() {
+    //so uh this part is kind of bad bc it screws itself but Main() or main() doesnt work ;-;
+ 
+    
+    int ourSpace = ThreadLocalRandom.current().nextInt(1, 11+1)+1;
+    int destination = ThreadLocalRandom.current().nextInt(1, 11+1)+1;
 
+    System.out.println("");
+    System.out.println("");
+    System.out.println("Our space/color that we started on is "+ourSpace);
+    System.out.println("The space/color that we want to get to is "+destination);
+
+
+    if (ourSpace < destination) {
+      destination = destination - 4;
+    }
+    // ahahaha ineffecient code dont u love it <3
     if (ourSpace == destination || ourSpace == destination + 4)  {
       System.out.println("No movement needed, already on color");
     } else {
       
       if ((ourSpace - destination) % 4 == 1) {
-        System.out.println("Move one space forward lmao");
+        System.out.println("Move one space backward lmao");
       } else if ((ourSpace - destination) % 4 == 2) {
         System.out.println("Move two spaces forward (or backward) :)");
-      } else if ((ourSpace - destination) % 4 == -1) {
-        System.out.println("Move one space backward");
+      } else if ((ourSpace - destination) % 4 == 3 ) {
+        System.out.println("Move one space forward");
       }
 
     } 
-  }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
   }
 }
